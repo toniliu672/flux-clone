@@ -40,10 +40,12 @@ class ComponentClasses implements Stringable
     /**
      * Conditionally add classes.
      */
-    public function when(bool $condition, string|array $classes): static
+    public function when(bool $condition, string|array $classes, string|array|null $default = null): static
     {
         if ($condition) {
             $this->add($classes);
+        } elseif ($default) {
+            $this->add($default);
         }
 
         return $this;
