@@ -3,36 +3,32 @@
     'icon' => null,
 ])
 
-<li class="flex items-center gap-2">
+<li class="flex items-center gap-2 group">
     {{-- Separator (shown for all but first item) --}}
-    <svg 
-        class="size-4 text-zinc-400 first:hidden" 
-        fill="none" 
-        viewBox="0 0 24 24" 
-        stroke-width="1.5" 
-        stroke="currentColor"
-    >
-        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-    </svg>
+    <x-flux-clone::icon 
+        name="chevron-right" 
+        variant="micro" 
+        class="text-zinc-600 first:hidden shrink-0" 
+    />
 
     @if($href)
         <a 
             href="{{ $href }}"
             {{ $attributes->class([
-                'flex items-center gap-1.5 text-sm text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-200 transition-colors',
+                'flex items-center gap-1.5 text-sm text-zinc-400 hover:text-white transition-colors',
             ]) }}
         >
             @if($icon)
-                <x-flux-clone::icon :name="$icon" class="size-4" />
+                <x-flux-clone::icon :name="$icon" class="size-4 shrink-0" />
             @endif
-            {{ $slot }}
+            <span>{{ $slot }}</span>
         </a>
     @else
-        <span {{ $attributes->class(['flex items-center gap-1.5 text-sm font-medium text-zinc-900 dark:text-zinc-100']) }}>
+        <div {{ $attributes->class(['flex items-center gap-1.5 text-sm font-semibold text-white tracking-tight']) }}>
             @if($icon)
-                <x-flux-clone::icon :name="$icon" class="size-4" />
+                <x-flux-clone::icon :name="$icon" class="size-4 shrink-0" />
             @endif
-            {{ $slot }}
-        </span>
+            <span>{{ $slot }}</span>
+        </div>
     @endif
 </li>
