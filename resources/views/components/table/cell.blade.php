@@ -3,6 +3,7 @@
     'sortable' => null,
     'align' => null,
     'width' => null,
+    'nowrap' => false,
 ])
 
 @php
@@ -17,12 +18,13 @@
     $widthClasses = $width ? "w-[$width]" : '';
 
     $baseClasses = \FluxClone\FluxClone::classes(
-        'whitespace-nowrap',
+        'align-top',
+        $nowrap ? 'whitespace-nowrap' : '',
         $alignClasses,
         $widthClasses,
     )
     ->when($header,
-        'px-6 py-3 text-xs font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 bg-zinc-50 dark:bg-zinc-800/50',
+        'whitespace-nowrap px-6 py-3 text-xs font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 bg-zinc-50 dark:bg-zinc-800/50',
         'px-6 py-4 text-sm text-zinc-900 dark:text-zinc-100 [table[data-compact="true"]_&]:py-2 [table[data-compact="true"]_&]:px-4'
     );
 @endphp
