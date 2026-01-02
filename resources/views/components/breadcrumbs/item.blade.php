@@ -8,7 +8,7 @@
     <x-flux-clone::icon 
         name="chevron-right" 
         variant="micro" 
-        class="text-zinc-600 first:hidden shrink-0" 
+        class="text-zinc-600 group-first:hidden shrink-0" 
     />
 
     @if($href)
