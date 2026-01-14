@@ -9,8 +9,10 @@
 ])
 
 @php
-    $inputId = $name ?? uniqid('select-');
-    $hasError = $name && $errors->has($name);
+    $wireModel = $attributes->whereStartsWith('wire:model')->first();
+    $fieldName = $name ?? $wireModel;
+    $inputId = $fieldName ?? uniqid('select-');
+    $hasError = $fieldName && $errors->has($fieldName);
     
     $selectClasses = \FluxClone\FluxClone::classes(
         'block w-full rounded-lg border bg-white px-3 py-2 pr-10 text-sm text-zinc-900 shadow-sm transition-colors appearance-none',
@@ -66,7 +68,7 @@
     {{-- Error message --}}
     @if($hasError)
         <p class="mt-1.5 text-sm text-red-600 dark:text-red-400">
-            {{ $errors->first($name) }}
+            {{ $errors->first($fieldName) }}
         </p>
     @endif
 </div>
